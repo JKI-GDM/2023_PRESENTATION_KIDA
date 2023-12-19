@@ -1,0 +1,147 @@
+\mode<presentation>
+
+\usepackage{ifthen,graphicx}
+
+\pgfdefobject{beamerfullscreennavstrong}{\pgfpoint{0pt}{-1pt}}{\pgfpoint{20pt}{5pt}}
+{%
+  %% Symbol fuer Fullscreen
+	\pgfpathrectangle{\pgfpoint{8.3pt}{0.8pt}}{\pgfpoint{3.4pt}{2.4pt}}%
+	\pgfusepath{fill}%\pgfusepathqstroke%
+}
+
+\def\insertfullscreennavigationsymbol
+{%
+  \begin{pgfpicture}{0pt}{-1.5pt}{10pt}{5.5pt}%
+    \pgfuseobject{beamerfullscreennavstrong}%
+  \end{pgfpicture}\kern-20pt%
+  \Acrobatmenu{FullScreen}{\beamer@linkspace{25pt}}%
+}
+
+\newcommand{\email}{to be defined}
+\defbeamertemplate*{navigation symbols}{fullscreenmode}
+{%
+  \hbox{\raisebox{0.5mm}{\parbox{0.3\paperwidth}{\phantom{.}\hspace{2mm}\parbox{3mm}{\insertframenumber}~\href{mailto:\email}{\email}}}}
+  \hbox{%
+  	\hbox{\insertfullscreennavigationsymbol}
+    \hbox{\insertslidenavigationsymbol}
+    \hbox{\insertframenavigationsymbol}
+    \hbox{\insertsubsectionnavigationsymbol}
+    \hbox{\insertsectionnavigationsymbol}
+    \hbox{\insertdocnavigationsymbol}
+    \hbox{\insertbackfindforwardnavigationsymbol}%
+  }%
+  \hspace{16mm}
+  \hbox{\raisebox{0.5mm}{\url{www.julius-kuehn.de}}}
+}
+
+\useinnertheme[shadow=true]{rounded}
+\usefonttheme[onlysmall]{structurebold}
+\usecolortheme{default}
+\usecolortheme[named=black]{structure}
+\date{}
+
+\setcounter{tocdepth}{1}
+
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\RequirePackage{xcolor}
+
+\definecolor{jkiblue}{RGB}{35,80,150}
+\definecolor{jkigreen1}{RGB}{190,210,35}
+\definecolor{jkiblue1}{RGB}{20,150,220}
+\definecolor{jkiblue2}{RGB}{30,130,195}
+\definecolor{jkiblue3}{RGB}{35,105,175}
+\definecolor{jkibrown1}{RGB}{240,215,35}
+\definecolor{jkibrown2}{RGB}{210,185,35}
+\definecolor{jkibrown3}{RGB}{190,160,35}
+\definecolor{jkibrown4}{RGB}{165,130,30}
+\definecolor{jkibrown6}{RGB}{125,80,20}
+\definecolor{jkibrown8}{RGB}{75,40,10}
+\definecolor{posterbg}{RGB}{255,255,255}
+
+\newlength{\boxWidth}
+\setlength{\boxWidth}{0.004\paperwidth}
+
+\newcommand{\InstLogo}{JKI_logo_english.pdf}
+\newcommand{\bg}[1]{
+\begin{tikzpicture}
+	\node at (-0.5mm,1.005 \paperheight) {};
+	
+	\draw[fill=jkigreen1,draw=jkigreen1] (current page.north west) rectangle ($(current page.north west)+(\boxWidth,-0.176\paperheight)$);	
+	\draw[fill=jkiblue1,jkiblue1] ($(current page.north west)+(0ex,-0.19\paperheight)$) rectangle ($(current page.north west)+(\boxWidth,-0.382\paperheight)$);	
+	\draw[fill=jkiblue2,jkiblue2] ($(current page.north west)+(0ex,-0.396\paperheight)$) rectangle ($(current page.north west)+(\boxWidth,-0.453\paperheight)$);		
+	\draw[fill=jkiblue3,jkiblue3] ($(current page.north west)+(0ex,-0.469\paperheight)$) rectangle ($(current page.north west)+(\boxWidth,-0.519\paperheight)$);	
+	\draw[fill=jkiblue,jkiblue] ($(current page.north west)+(0ex,-0.536\paperheight)$) rectangle ($(current page.north west)+(\boxWidth,-0.564\paperheight)$);		
+	\draw[fill=jkibrown8,jkibrown8] ($(current page.north west)+(0ex,-0.58\paperheight)$) rectangle ($(current page.north west)+(\boxWidth,-0.606\paperheight)$);	
+	\draw[fill=jkibrown6,jkibrown6] ($(current page.north west)+(0ex,-0.6221\paperheight)$) rectangle ($(current page.north west)+(\boxWidth,-0.651\paperheight)$);		
+	\draw[fill=jkibrown4,jkibrown4] ($(current page.north west)+(0ex,-0.667\paperheight)$) rectangle ($(current page.north west)+(\boxWidth,-0.701\paperheight)$);	
+	\draw[fill=jkibrown3,jkibrown3] ($(current page.north west)+(0ex,-0.717\paperheight)$) rectangle ($(current page.north west)+(\boxWidth,-0.768\paperheight)$);	
+	\draw[fill=jkibrown2,jkibrown2] ($(current page.north west)+(0ex,-0.786\paperheight)$) rectangle ($(current page.north west)+(\boxWidth,-0.845\paperheight)$);	
+	\draw[fill=jkibrown1,jkibrown1] ($(current page.north west)+(0ex,-0.861\paperheight)$) rectangle ($(current page.north west)+(\boxWidth,-0.96\paperheight)$);
+	\ifthenelse{\equal{#1}{title}}%
+	{\node at (9.5cm,8cm) {\includegraphics[width=5cm]{\InstLogo}};}
+	{\node at (11.25cm,9cm) {\includegraphics[width=2cm]{\InstLogo}};}
+\end{tikzpicture}
+}
+
+\setbeamertemplate{frametitle}{\vspace{5mm}\hspace{-5mm}\bf\insertframetitle}
+
+\setbeamercolor{block title}{bg=jkiblue,fg=white}
+\setbeamercolor{block body}{fg=black,bg=jkiblue!5}
+
+\setbeamercolor{block title alerted}{bg=red,fg=white}
+\setbeamercolor{block body alerted}{fg=black,bg=red!5}
+
+\newcommand{\highlight}[1]{\textcolor{jkiblue}{\bf #1}}
+\newcommand{\TODO}[1]{\textcolor{red}{TODO: #1}}
+
+\makeatletter
+
+\newcommand{\tp}{
+	\vspace{34mm}%
+	{%
+	 \usebeamerfont*{title}%
+	 \Large\bf\inserttitle\par%
+	}\vspace{6mm}%
+	{%
+		\ifx\insertsubtitle\empty
+		\else
+			\usebeamerfont*{subtitle}\insertsubtitle\par
+		\fi%
+		\insertauthor\par
+		\ifx\insertinstitute\empty
+		\else
+			{\tiny\insertinstitute}\par
+		\fi%
+	}%
+	\vspace{7mm}%
+}
+
+\newboolean{firstBlack}
+\setboolean{firstBlack}{false}
+\defbeamertemplate*{title page}{tud}{%
+	\ifthenelse{\boolean{firstBlack}}
+		{\color{white}{\tp}}
+		{\color{black}{\tp}}
+}
+
+
+\makeatother
+
+\renewcommand\maketitle{
+	\ifthenelse{\boolean{firstBlack}}{
+		\setbeamercolor{background canvas}{bg=black}
+		\setbeamercolor{structure}{fg=white}
+	}{
+		\setbeamercolor{background canvas}{bg=white}
+		\setbeamercolor{structure}{fg=black}
+	}
+	\setbeamertemplate{background}{\bg{title}}
+  \frame{\titlepage}
+  \setbeamercolor{background canvas}{bg=white}
+	\setbeamercolor{structure}{fg=black}
+	\setbeamertemplate{background}{\bg{main}}
+}
+
+\mode
+<all>
